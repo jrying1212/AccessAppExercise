@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin">20dp</dimen>
+    <dimen name="marin_top_admin">10dp</dimen>
+    <dimen name="textSize">20sp</dimen>
+    <dimen name="cardView_margin">6dp</dimen>
+    <dimen name="innerPadding">10dp</dimen>
+    <dimen name="radius">10dp</dimen>
+    <dimen name="elevation">6dp</dimen>
+    <dimen name="imageView_size">100dp</dimen>
+</resources>
