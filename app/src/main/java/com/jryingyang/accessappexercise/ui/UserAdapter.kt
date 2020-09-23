@@ -6,7 +6,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.jryingyang.accessappexercise.model.User
 
-class UserAdapter : PagingDataAdapter<User, RecyclerView.ViewHolder>(COMPARATOR) {
+class UserAdapter(private val listener: UserItemClickListener) :
+    PagingDataAdapter<User, RecyclerView.ViewHolder>(COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return UserViewHolder.create(parent)
@@ -15,7 +16,7 @@ class UserAdapter : PagingDataAdapter<User, RecyclerView.ViewHolder>(COMPARATOR)
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = getItem(position)
         if (item != null) {
-            (holder as UserViewHolder).bind(item)
+            (holder as UserViewHolder).bind(item, listener)
         }
     }
 
@@ -28,4 +29,5 @@ class UserAdapter : PagingDataAdapter<User, RecyclerView.ViewHolder>(COMPARATOR)
                 oldItem == newItem
         }
     }
+
 }

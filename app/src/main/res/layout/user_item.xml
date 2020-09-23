@@ -5,6 +5,10 @@
     <data>
 
         <variable
+            name="listener"
+            type="com.jryingyang.accessappexercise.ui.UserItemClickListener" />
+
+        <variable
             name="user"
             type="com.jryingyang.accessappexercise.model.User" />
     </data>
@@ -13,6 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/cardView_margin"
+        android:onClick="@{() -> listener.onUserItemClick(user)}"
         app:cardCornerRadius="@dimen/radius"
         app:cardElevation="@dimen/elevation"
         app:contentPadding="@dimen/innerPadding">

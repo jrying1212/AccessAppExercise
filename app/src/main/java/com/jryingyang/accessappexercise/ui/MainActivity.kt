@@ -1,5 +1,6 @@
 package com.jryingyang.accessappexercise.ui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -9,12 +10,13 @@ import com.jryingyang.accessappexercise.R
 import com.jryingyang.accessappexercise.api.GithubService
 import com.jryingyang.accessappexercise.data.GithubRepository
 import com.jryingyang.accessappexercise.databinding.ActivityMainBinding
+import com.jryingyang.accessappexercise.model.User
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), UserItemClickListener {
 
     private lateinit var viewModel: UserViewModel
     private lateinit var viewDataBinding: ActivityMainBinding
-    private val adapter = UserAdapter()
+    private val adapter = UserAdapter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,5 +41,11 @@ class MainActivity : AppCompatActivity() {
         viewModel.getUserList().observe(this, Observer { result ->
             adapter.submitData(lifecycle, result)
         })
+    }
+
+    override fun onUserItemClick(user: User) {
+        val intent = Intent(this, UserDetailActivity::class.java)
+        intent.putExtra(getString(R.string.login), user.login)
+        startActivity(intent)
     }
 }

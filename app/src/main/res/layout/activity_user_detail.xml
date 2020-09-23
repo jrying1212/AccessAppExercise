@@ -1,135 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.UserDetailActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <data>
+
+        <variable
+            name="data"
+            type="com.jryingyang.accessappexercise.model.UserDetail" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        tools:context=".ui.UserDetailActivity">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/close_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_baseline_close_48" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/detail_avatar"
-                android:layout_width="@dimen/detail_avatar"
-                android:layout_height="@dimen/detail_avatar"
-                android:layout_gravity="center_horizontal" />
+                <ImageView
+                    android:id="@+id/close_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="closeBtnClick"
+                    android:src="@drawable/ic_baseline_close_48" />
 
-            <TextView
-                android:id="@+id/name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/margin"
-                android:textSize="@dimen/textSize" />
+                <ImageView
+                    android:id="@+id/detail_avatar"
+                    android:layout_width="@dimen/detail_avatar"
+                    android:layout_height="@dimen/detail_avatar"
+                    android:layout_gravity="center_horizontal" />
 
-            <TextView
-                android:id="@+id/bio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/margin"
-                android:textSize="@dimen/textSize" />
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@{data.name}"
+                    android:textSize="@dimen/textSize" />
+
+                <TextView
+                    android:id="@+id/bio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@{data.bio}"
+                    android:textSize="@dimen/textSize" />
+            </LinearLayout>
+
+            <View style="@style/Divider" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/people_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin"
+                    android:layout_marginTop="@dimen/detail_marin_top"
+                    android:src="@drawable/ic_baseline_person_48"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/detail_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin"
+                    android:text="@{data.login}"
+                    app:layout_constraintStart_toEndOf="@+id/people_icon"
+                    app:layout_constraintTop_toTopOf="@+id/people_icon" />
+
+                <TextView
+                    android:id="@+id/detail_admin"
+                    visibleGone="@{data.site_admin}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin"
+                    android:layout_marginTop="@dimen/text_margin"
+                    android:background="@drawable/rectangle_with_corner"
+                    android:text="@string/staff"
+                    android:textColor="@android:color/white"
+                    app:layout_constraintBottom_toBottomOf="@+id/people_icon"
+                    app:layout_constraintStart_toEndOf="@+id/people_icon"
+                    app:layout_constraintTop_toBottomOf="@+id/detail_login"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <ImageView
+                    android:id="@+id/location_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin"
+                    android:layout_marginTop="@dimen/detail_marin_top"
+                    android:src="@drawable/ic_baseline_location_on_48"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/people_icon" />
+
+                <TextView
+                    android:id="@+id/location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin"
+                    android:layout_marginTop="@dimen/detail_marin_top"
+                    android:text="@{data.location}"
+                    app:layout_constraintBottom_toBottomOf="@+id/location_icon"
+                    app:layout_constraintStart_toEndOf="@+id/location_icon"
+                    app:layout_constraintTop_toBottomOf="@+id/people_icon" />
+
+                <ImageView
+                    android:id="@+id/link_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin"
+                    android:layout_marginTop="@dimen/detail_marin_top"
+                    android:src="@drawable/ic_baseline_link_48"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/location_icon" />
+
+                <TextView
+                    android:id="@+id/link"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin"
+                    android:layout_marginTop="@dimen/detail_marin_top"
+                    android:autoLink="web"
+                    android:text="@{data.blog}"
+                    app:layout_constraintBottom_toBottomOf="@+id/link_icon"
+                    app:layout_constraintStart_toEndOf="@+id/link_icon"
+                    app:layout_constraintTop_toBottomOf="@+id/location_icon" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
-
-        <View style="@style/Divider" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <ImageView
-                android:id="@+id/people_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin"
-                android:layout_marginTop="@dimen/detail_marin_top"
-                android:src="@drawable/ic_baseline_person_48"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/detail_login"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin"
-                app:layout_constraintEnd_toEndOf="@+id/detail_admin"
-                app:layout_constraintStart_toEndOf="@+id/people_icon"
-                app:layout_constraintTop_toTopOf="@+id/people_icon" />
-
-            <TextView
-                android:id="@+id/detail_admin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin"
-                android:layout_marginTop="@dimen/text_margin"
-                android:background="@drawable/rectangle_with_corner"
-                android:text="@string/staff"
-                android:textColor="@android:color/white"
-                app:layout_constraintBottom_toBottomOf="@+id/people_icon"
-                app:layout_constraintStart_toEndOf="@+id/people_icon"
-                app:layout_constraintTop_toBottomOf="@+id/detail_login"
-                app:layout_constraintVertical_bias="0.0" />
-
-            <ImageView
-                android:id="@+id/location_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin"
-                android:layout_marginTop="@dimen/detail_marin_top"
-                android:src="@drawable/ic_baseline_location_on_48"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/people_icon" />
-
-            <TextView
-                android:id="@+id/location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin"
-                android:layout_marginTop="@dimen/detail_marin_top"
-                app:layout_constraintBottom_toBottomOf="@+id/location_icon"
-                app:layout_constraintStart_toEndOf="@+id/location_icon"
-                app:layout_constraintTop_toBottomOf="@+id/people_icon" />
-
-            <ImageView
-                android:id="@+id/link_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin"
-                android:layout_marginTop="@dimen/detail_marin_top"
-                android:src="@drawable/ic_baseline_link_48"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/location_icon" />
-
-            <TextView
-                android:id="@+id/link"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin"
-                android:layout_marginTop="@dimen/detail_marin_top"
-                android:autoLink="web"
-                app:layout_constraintBottom_toBottomOf="@+id/link_icon"
-                app:layout_constraintStart_toEndOf="@+id/link_icon"
-                app:layout_constraintTop_toBottomOf="@+id/location_icon" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

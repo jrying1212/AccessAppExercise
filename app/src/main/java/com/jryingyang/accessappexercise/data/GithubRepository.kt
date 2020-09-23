@@ -7,6 +7,7 @@ import androidx.paging.PagingData
 import androidx.paging.liveData
 import com.jryingyang.accessappexercise.api.GithubService
 import com.jryingyang.accessappexercise.model.User
+import com.jryingyang.accessappexercise.model.UserDetail
 
 class GithubRepository(private val githubService: GithubService) {
 
@@ -19,5 +20,9 @@ class GithubRepository(private val githubService: GithubService) {
             config = PagingConfig(pageSize = NETWORK_PAGE_SIZE, enablePlaceholders = false),
             pagingSourceFactory = { GithubPagingSource(githubService) }
         ).liveData
+    }
+
+    suspend fun requestUserDetail(login: String): UserDetail {
+        return GithubService.create().getUserDetail(login)
     }
 }

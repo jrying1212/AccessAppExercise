@@ -8,8 +8,9 @@ import com.jryingyang.accessappexercise.model.User
 
 class UserViewHolder(private val binding: UserItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(item: User) {
+    fun bind(item: User, listener: UserItemClickListener) {
         binding.user = item
+        binding.listener = listener
         binding.executePendingBindings()
     }
 
