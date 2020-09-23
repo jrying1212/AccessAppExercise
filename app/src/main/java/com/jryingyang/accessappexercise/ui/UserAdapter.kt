@@ -4,9 +4,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.jryingyang.accessappexercise.api.UserResponse
+import com.jryingyang.accessappexercise.model.User
 
-class UserAdapter : ListAdapter<UserResponse, RecyclerView.ViewHolder>(COMPARATOR) {
+class UserAdapter : ListAdapter<User, RecyclerView.ViewHolder>(COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return UserViewHolder.create(parent)
@@ -20,11 +20,11 @@ class UserAdapter : ListAdapter<UserResponse, RecyclerView.ViewHolder>(COMPARATO
     }
 
     companion object {
-        private val COMPARATOR = object : DiffUtil.ItemCallback<UserResponse>() {
-            override fun areItemsTheSame(oldItem: UserResponse, newItem: UserResponse): Boolean =
+        private val COMPARATOR = object : DiffUtil.ItemCallback<User>() {
+            override fun areItemsTheSame(oldItem: User, newItem: User): Boolean =
                 oldItem.login == newItem.login
 
-            override fun areContentsTheSame(oldItem: UserResponse, newItem: UserResponse): Boolean =
+            override fun areContentsTheSame(oldItem: User, newItem: User): Boolean =
                 oldItem == newItem
         }
     }

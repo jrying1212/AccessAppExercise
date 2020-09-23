@@ -1,8 +1,8 @@
-package com.jryingyang.accessappexercise.api
+package com.jryingyang.accessappexercise.model
 
 import com.google.gson.annotations.SerializedName
 
-data class UserDetailResponse(
+data class UserDetail(
     @SerializedName("avatar_url")
     val avatar_url: String,
 

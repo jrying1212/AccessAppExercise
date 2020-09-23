@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.jryingyang.accessappexercise.R
-import com.jryingyang.accessappexercise.api.UserResponse
+import com.jryingyang.accessappexercise.model.User
 
 class UserViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
@@ -18,7 +18,7 @@ class UserViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val avatar: ImageView = view.findViewById(R.id.avatar)
     private val admin: TextView = view.findViewById(R.id.admin)
 
-    fun bind(item: UserResponse) {
+    fun bind(item: User) {
         login.text = item.login
 
         if (item.site_admin) {

@@ -7,7 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.jryingyang.accessappexercise.R
 import com.jryingyang.accessappexercise.api.GithubService
-import com.jryingyang.accessappexercise.api.UserResponse
+import com.jryingyang.accessappexercise.model.User
 import com.jryingyang.accessappexercise.data.GithubRepository
 import com.jryingyang.accessappexercise.databinding.ActivityMainBinding
 
@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initAdapter() {
         viewDataBinding.userList.adapter = adapter
-        viewModel.listData.observe(this, Observer<List<UserResponse>> { result ->
+        viewModel.listData.observe(this, Observer<List<User>> { result ->
             adapter.submitList(result)
         })
     }
