@@ -1,23 +1,18 @@
 package com.jryingyang.accessappexercise.ui
 
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.jryingyang.accessappexercise.model.User
+import androidx.paging.PagingData
 import com.jryingyang.accessappexercise.data.GithubRepository
-import kotlinx.coroutines.launch
+import com.jryingyang.accessappexercise.model.User
 
 class UserViewModel(private val repository: GithubRepository) : ViewModel() {
 
-    val listData: MutableLiveData<List<User>> = MutableLiveData()
+    private var currentData: LiveData<PagingData<User>>? = null
 
-    init {
-        getData()
-    }
-
-    private fun getData() {
-        viewModelScope.launch {
-            listData.value = repository.requestUserList()
-        }
+    fun getUserList(): LiveData<PagingData<User>> {
+        val newData = repository.requestUserList()
+        currentData = newData
+        return newData
     }
 }

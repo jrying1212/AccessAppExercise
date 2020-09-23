@@ -1,12 +1,12 @@
 package com.jryingyang.accessappexercise.ui
 
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.jryingyang.accessappexercise.model.User
 
-class UserAdapter : ListAdapter<User, RecyclerView.ViewHolder>(COMPARATOR) {
+class UserAdapter : PagingDataAdapter<User, RecyclerView.ViewHolder>(COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return UserViewHolder.create(parent)

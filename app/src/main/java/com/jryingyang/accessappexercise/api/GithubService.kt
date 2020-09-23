@@ -1,16 +1,21 @@
 package com.jryingyang.accessappexercise.api
 
-import com.jryingyang.accessappexercise.model.UserDetail
 import com.jryingyang.accessappexercise.model.User
+import com.jryingyang.accessappexercise.model.UserDetail
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface GithubService {
+
     @GET("users")
-    suspend fun getUserList(): List<User>
+    suspend fun getUserList(
+        @Query("page") page: Int,
+        @Query("per_page") itemsPerPage: Int
+    ): List<User>
 
     @GET("users/{userName}")
     suspend fun getUserDetail(
