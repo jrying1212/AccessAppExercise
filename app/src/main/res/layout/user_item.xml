@@ -1,48 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="@dimen/cardView_margin"
-    app:cardCornerRadius="@dimen/radius"
-    app:cardElevation="@dimen/elevation"
-    app:contentPadding="@dimen/innerPadding">
+    <data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+        <variable
+            name="user"
+            type="com.jryingyang.accessappexercise.model.User" />
+    </data>
+
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/cardView_margin"
+        app:cardCornerRadius="@dimen/radius"
+        app:cardElevation="@dimen/elevation"
+        app:contentPadding="@dimen/innerPadding">
 
-        <ImageView
-            android:id="@+id/avatar"
-            android:layout_width="@dimen/imageView_size"
-            android:layout_height="@dimen/imageView_size"
-            android:layout_marginStart="@dimen/margin"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin"
-            android:layout_marginTop="@dimen/margin"
-            android:textSize="@dimen/textSize"
-            app:layout_constraintStart_toEndOf="@+id/avatar"
-            app:layout_constraintTop_toTopOf="parent" />
+            <ImageView
+                android:id="@+id/avatar"
+                imageUrl="@{user.avatar_url}"
+                android:layout_width="@dimen/imageView_size"
+                android:layout_height="@dimen/imageView_size"
+                android:layout_marginStart="@dimen/margin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/admin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin"
-            android:layout_marginTop="@dimen/marin_top_admin"
-            android:background="@drawable/rectangle_with_corner"
-            android:text="@string/staff"
-            android:textColor="@android:color/white"
-            android:visibility="gone"
-            app:layout_constraintStart_toEndOf="@+id/avatar"
-            app:layout_constraintTop_toBottomOf="@+id/login" />
+            <TextView
+                android:id="@+id/login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginTop="@dimen/margin"
+                android:text="@{user.login}"
+                android:textSize="@dimen/textSize"
+                app:layout_constraintStart_toEndOf="@+id/avatar"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/admin"
+                visibleGone="@{user.site_admin}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginTop="@dimen/marin_top_admin"
+                android:background="@drawable/rectangle_with_corner"
+                android:text="@string/staff"
+                android:textColor="@android:color/white"
+                app:layout_constraintStart_toEndOf="@+id/avatar"
+                app:layout_constraintTop_toBottomOf="@+id/login" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>
