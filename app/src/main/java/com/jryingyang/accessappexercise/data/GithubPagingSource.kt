@@ -6,7 +6,7 @@ import com.jryingyang.accessappexercise.model.User
 import retrofit2.HttpException
 import java.io.IOException
 
-private const val GITHUB_STARTING_PAGE_INDEX = 1
+private const val GITHUB_STARTING_PAGE_INDEX = 0
 
 class GithubPagingSource(private val service: GithubService) : PagingSource<Int, User>() {
 
@@ -16,8 +16,8 @@ class GithubPagingSource(private val service: GithubService) : PagingSource<Int,
             val response = service.getUserList(position, params.loadSize)
             LoadResult.Page(
                 data = response,
-                prevKey = if (position == GITHUB_STARTING_PAGE_INDEX) null else position - 1,
-                nextKey = if (response.isEmpty()) null else position + 1
+                prevKey = if (position == GITHUB_STARTING_PAGE_INDEX) null else response[response.size - 1].id - 1,
+                nextKey = if (response.isEmpty()) null else response[response.size - 1].id
             )
 
         } catch (exception: IOException) {

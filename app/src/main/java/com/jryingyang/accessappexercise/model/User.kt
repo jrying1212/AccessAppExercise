@@ -10,5 +10,8 @@ data class User(
     val avatar_url: String,
 
     @SerializedName("site_admin")
-    val site_admin: Boolean
+    val site_admin: Boolean,
+
+    @SerializedName("id")
+    var id: Int
 )
