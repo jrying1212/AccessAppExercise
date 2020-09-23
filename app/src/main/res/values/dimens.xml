@@ -8,4 +8,7 @@
     <dimen name="radius">10dp</dimen>
     <dimen name="elevation">6dp</dimen>
     <dimen name="imageView_size">100dp</dimen>
+    <dimen name="detail_avatar">200dp</dimen>
+    <dimen name="detail_marin_top">30dp</dimen>
+    <dimen name="text_margin">8dp</dimen>
 </resources>
